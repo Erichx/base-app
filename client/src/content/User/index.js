@@ -1,29 +1,43 @@
 import React from "react";
-import { Container, Row, Toast, ToastContainer, Alert } from "react-bootstrap";
+import { Container, Row, Alert } from "react-bootstrap";
+import DataTable from "react-data-table-component";
+
 import Header from "../../components/Header";
 function User() {
+  const columns = [
+    {
+      name: "Title",
+      selector: (row) => row.title,
+    },
+    {
+      name: "Year",
+      selector: (row) => row.year,
+    },
+  ];
+
+  const data = [
+    {
+      id: 1,
+      title: "Beetlejuice",
+      year: "1988",
+    },
+    {
+      id: 2,
+      title: "Ghostbusters",
+      year: "1984",
+    },
+  ];
+
   return (
     <React.Fragment>
       <Header />
       <Container>
         <Row>
-          {/* toast*/}
-          <ToastContainer position="bottom-end" className="p-3">
-            <Toast>
-              <Toast.Header>
-                <strong className="me-auto">
-                  Your info is showing in the top here :D{" "}
-                </strong>
-              </Toast.Header>
-              <Toast.Body>
-                Woohoo, you're reading this text in a Toast!
-              </Toast.Body>
-            </Toast>
-          </ToastContainer>
           {/* Alert */}
           <Alert variant="danger" onClose={() => null} dismissible>
             You connection is bad;
           </Alert>
+          <DataTable columns={columns} data={data} />
         </Row>
       </Container>
     </React.Fragment>

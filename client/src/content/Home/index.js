@@ -1,6 +1,6 @@
 import React from "react";
 
 function index(props) {
-  return <div>HOME</div>;
+  return <div>test </div>;
 }
 export default index;

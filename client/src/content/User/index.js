@@ -1,8 +1,9 @@
 import React from "react";
-import { Container, Row, Alert } from "react-bootstrap";
+import { Alert, Container, Row } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-
 import Header from "../../components/Header";
+
+
 function User() {
   const columns = [
     {

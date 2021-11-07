@@ -6,23 +6,38 @@ import Header from '../../components/Header'
 function User() {
     const columns = [
         {
-            name: 'Title',
-            selector: (row) => row.title,
+            name: 'name',
+            selector: (row) => row.name,
         },
         {
-            name: 'Year',
-            selector: (row) => row.year,
+            name: 'email',
+            selector: (row) => row.email,
+        },
+        {
+            name: 'nivel',
+            selector: (row) => row.nivel,
         },
     ]
 
-    const data = []
+    const data = [   {
+        id: 1,
+        name: 'Tiago Correia',
+        email: 'tiago-correia@armyspy.com',
+        nivel: 'admin',
+    },
+    {
+        id: 2,
+        name: 'Isabela Cardoso Dias',
+        email: 'isabelacardosodias@dayrep.com',
+        nivel: 'client',
+    },]
 
     return (
         <React.Fragment>
             <Header />
-            <Container>
+            <Container className="mt-4">
                 <Row>
-                    <Col>
+                    <Col >
                         <Datatable
                             columns={columns}
                             data={data}

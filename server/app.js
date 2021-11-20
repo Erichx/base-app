@@ -1,15 +1,15 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const mongoose = require('mongoose'); 
 require('dotenv/config');
  
 app.use(express.json({limit: '20mb'}));
 app.use(express.urlencoded({ extended: false, limit: '2mb' }));
 
-const  usersRouter = require('./routes/users'); 
+//routes
+ 
+app.use('/api/users', require('./routes/users'));
 
-app.use('/users', usersRouter) 
 
 //conect to DB
 mongoose.connect(
@@ -19,7 +19,6 @@ mongoose.connect(
     console.log("Connected with DB");
   }
 );
-
-
+ 
 //listen
 app.listen(3001);

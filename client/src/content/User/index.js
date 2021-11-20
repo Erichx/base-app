@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Datatable from '../../components/Datatable'
 import Header from '../../components/Header'
+import api from '../../services/api'
 
 function User() {
     const columns = [
@@ -19,18 +20,15 @@ function User() {
         },
     ]
 
-    const data = [   {
-        id: 1,
-        name: 'Tiago Correia',
-        email: 'tiago-correia@armyspy.com',
-        nivel: 'admin',
-    },
-    {
-        id: 2,
-        name: 'Isabela Cardoso Dias',
-        email: 'isabelacardosodias@dayrep.com',
-        nivel: 'client',
-    },]
+
+
+    const data =  api.get('/users/')
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => {
+      console.log(error)
+    });
 
     return (
         <React.Fragment>

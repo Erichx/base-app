@@ -13,10 +13,12 @@ function User() {
         {
             name: 'name',
             selector: (row) => row.name,
+            sortable: true,
         },
         {
             name: 'type',
             selector: (row) => row.type,
+            sortable: true,
         },
     ]
 
@@ -40,12 +42,17 @@ function User() {
                 <Row>
                     <Col>
                         {loading ? (
-                            <p> Loading </p>
+                            <p className=" animate__animated animate__flash animate__infinite">
+                                {' '}
+                                <i className="bi bi-hourglass-split"></i>{' '}
+                                Carregando...{' '}
+                            </p>
                         ) : (
                             <Datatable
                                 columns={columns}
                                 data={response}
                                 message={message}
+                                pagination 
                             />
                         )}
                     </Col>

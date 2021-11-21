@@ -11,3 +11,5 @@ baixar Formik e criar formulario com init e validation desaclopado
 https://react-bootstrap-v4.netlify.app/getting-started/introduction/
 --datatable
 https://react-data-table-component.netlify.app/?path=/docs/getting-started-installation--page
+--icon
+https://icons.getbootstrap.com/

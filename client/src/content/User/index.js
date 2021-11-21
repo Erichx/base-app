@@ -1,46 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Datatable from '../../components/Datatable'
 import Header from '../../components/Header'
 import api from '../../services/api'
 
 function User() {
+    const [response, setResponse] = useState([])
+    const [message, setMessage] = useState('')
+    const [loading, setloading] = useState(true)
+
     const columns = [
         {
             name: 'name',
             selector: (row) => row.name,
         },
         {
-            name: 'email',
-            selector: (row) => row.email,
-        },
-        {
-            name: 'nivel',
-            selector: (row) => row.nivel,
+            name: 'type',
+            selector: (row) => row.type,
         },
     ]
 
-
-
-    const data =  api.get('/users/')
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    });
+    useEffect(() => {
+        api.get('/users/')
+            .then((res) => {
+                setResponse(res.data)
+            })
+            .catch(() => {
+                setMessage('Algo deu errado. :(')
+            })
+            .finally(() => {
+                setloading(false)
+            })
+    }, [])
 
     return (
         <React.Fragment>
             <Header />
             <Container className="mt-4">
                 <Row>
-                    <Col >
-                        <Datatable
-                            columns={columns}
-                            data={data}
-                            message={'Não há usuários registrados'}
-                        />
+                    <Col>
+                        {loading ? (
+                            <p> Loading </p>
+                        ) : (
+                            <Datatable
+                                columns={columns}
+                                data={response}
+                                message={message}
+                            />
+                        )}
                     </Col>
                 </Row>
             </Container>

@@ -14,6 +14,7 @@ function Datatable({ columns, data, message }) {
                 <DataTable 
                     columns={columns}
                     data={data}
+                    pagination
                 />
             )}
         </React.Fragment>

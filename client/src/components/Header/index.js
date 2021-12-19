@@ -13,7 +13,7 @@ const Header = () => (
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Nav.Link href="#home">Inicio</Nav.Link>
-          <Nav.Link href="#link">Usuário</Nav.Link>
+          <Nav.Link href="/user">Usuário</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">

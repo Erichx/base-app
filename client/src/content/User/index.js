@@ -3,11 +3,23 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import Datatable from '../../components/Datatable'
 import Header from '../../components/Header'
 import api from '../../services/api'
+import Update from './Modal/Update'
 
 function User() {
     const [response, setResponse] = useState([])
     const [message, setMessage] = useState('')
-    const [loading, setloading] = useState(true)
+    const [loading, setLoading] = useState(true)
+    const [showModal, setShowModal] = useState(false)
+    const [data, setData] = useState({})
+
+    function OpenModal(row) {
+        setShowModal(!showModal)
+        setData(row)
+    }
+    function toggleModal() {
+        console.log('close')
+        setShowModal(!showModal)
+    }
 
     const columns = [
         {
@@ -34,20 +46,24 @@ function User() {
             name: 'action',
             selector: (row) => row.id,
             button: true,
-            cell: () => <Button size="sm" >Edit</Button>,
-        }, 
+            cell: (row) => (
+                <Button onClick={() => OpenModal(row)} size="sm">
+                    Edit
+                </Button>
+            ),
+        },
     ]
 
     useEffect(() => {
         api.get('/users/')
-            .then((res) => {                
+            .then((res) => {
                 setResponse(res.data)
             })
             .catch(() => {
                 setMessage('Algo deu errado. :(')
             })
-            .finally(() => { 
-                setloading(false)
+            .finally(() => {
+                setLoading(false)
             })
     }, [])
 
@@ -68,12 +84,20 @@ function User() {
                                 columns={columns}
                                 data={response}
                                 message={message}
-                                pagination 
+                                pagination
                             />
                         )}
                     </Col>
                 </Row>
             </Container>
+
+            {showModal && (
+                <Update
+                    show={showModal}
+                    toggleModal={() => toggleModal()}
+                    data={data}
+                />
+            )}
         </React.Fragment>
     )
 }
